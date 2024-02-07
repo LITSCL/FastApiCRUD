@@ -34,11 +34,11 @@ async def post_producto(producto: Producto) -> Producto:
     return productos[len(productos) - 1]
 
 @app.put("/{codigo}", response_model = Producto, tags = ["modelo_producto"])
-async def put_producto(codigo: str, productoObtenido: Producto) -> Producto:
+async def put_producto(codigo: str, producto_obtenido: Producto) -> Producto:
     for i, producto in enumerate(productos):
         if (codigo == producto.codigo):
-            productos[i].nombre = productoObtenido.nombre
-            productos[i].precio = productoObtenido.precio
+            productos[i].nombre = producto_obtenido.nombre
+            productos[i].precio = producto_obtenido.precio
             return producto
     raise HTTPException(status_code = 404, detail = "SERVIDOR: No existe el producto con el codigo " + str(codigo))
 
